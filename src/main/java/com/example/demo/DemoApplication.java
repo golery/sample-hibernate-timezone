@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
@@ -19,6 +20,11 @@ public class DemoApplication implements CommandLineRunner {
 
     @Autowired
     private Repo repo;
+
+    @PostConstruct
+    public void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
